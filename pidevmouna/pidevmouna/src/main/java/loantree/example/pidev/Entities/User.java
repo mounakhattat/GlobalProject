@@ -17,7 +17,7 @@ import java.util.Set;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idUser")
+    @Column(name = "idUser")
     private Integer idUser;
     private String FirstName;
     private String LastName;
@@ -28,8 +28,9 @@ public class User implements Serializable {
     private String Housing;
     private Integer PostalCode;
     private String Email;
+    private boolean isActived;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(  name = "user_roles",
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
@@ -140,5 +141,16 @@ public class User implements Serializable {
     public Set<Account> getAccount() {
         return Account;
     }
+
+    public boolean isActivated() {
+        return isActived;
+    }
+
+    public void setActivated(boolean isActived) {
+        isActived = isActived;
+    }
+
+
+
 
 }
