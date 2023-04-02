@@ -1,4 +1,4 @@
-package loantree.example.pidev.Services;
+package loantree.example.pidev.services;
 import loantree.example.pidev.Entities.Account;
 import org.springframework.stereotype.Service;
 
@@ -11,4 +11,7 @@ public interface IAccountService {
     Account createAccount(Account a);
     Account updateAccount(Integer idAcc, Account a);
     void deleteAccount(Integer  idAcc);
+    Account banUser(Integer idAcc, int nbr);
+   // List<Account> filterAccount(Date dateCreation, Integer amountTrans, Integer Ageuser);
+
 }

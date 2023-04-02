@@ -1,39 +1,72 @@
-package loantree.example.pidev.Services;
+package loantree.example.pidev.services;
 import loantree.example.pidev.Entities.Account;
-import loantree.example.pidev.Repository.AccountRepository;
+import loantree.example.pidev.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public class AccountService implements IAccountService {
     @Autowired
     private AccountRepository accountRepository;
+
     @Override
     public List<Account> getAllAccount() {
         return accountRepository.findAll();
     }
+
     @Override
     public Account getAccountById(Integer idAcc) {
         return accountRepository.findById(idAcc).orElse(null);
     }
+
     @Override
     public Account createAccount(Account a) {
         return accountRepository.save(a);
     }
+
     @Override
     public Account updateAccount(Integer idAcc, Account a) {
         Account existingAccount = accountRepository.findById(idAcc).orElse(null);
         if (existingAccount != null) {
-            existingAccount.setNumAccount(a.getNumAccount());
-            existingAccount.setRib(a.getRib());
+
             return accountRepository.save(existingAccount);
+
         } else {
             return null;
         }
     }
+
     @Override
-    public void deleteAccount(Integer  idAcc) {
+    public void deleteAccount(Integer idAcc) {
         accountRepository.deleteById(idAcc);
     }
+
+    @Override
+    public Account banUser(Integer idAcc, int nbr) {
+        Account acc = accountRepository.findByIdAcc(idAcc);
+        acc.setBanned(true);
+
+        acc.setBannedPeriode(new Date(new Date().getTime() + (nbr * 1000 * 60 * 60 * 24)));
+        accountRepository.save(acc);
+        return acc;
+    }
 }
+
+  /*  @Override
+    public     List<Account> filterAccount(Date dateCreation, Integer amountTrans, Integer Ageuser)
+    {
+        if (dateCreation != null && amountTrans == null && Ageuser != null) {
+            return accountRepository.findBydateCreationGreaterThanOrdateCreationEquals(dateCreation, dateCreation);
+       } else if (dateCreation != null && amountTrans == null && Ageuser == null) {
+           return accountRepository.findByAgeBetween(Ageuser, Ageuser);
+        }
+            return null;
+        }
+    }
+
+   */
+
+
+

@@ -1,43 +1,38 @@
 package loantree.example.pidev.Entities;
-
-
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+@Getter
+@Setter
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
+
 public class Role {
-
-
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Integer id;
+        private Integer idRole;
 
-        @Column(length = 20)
-        private String name;
+        @Enumerated(EnumType.STRING)
+        private ERole name;
 
         public Role() {
 
         }
 
-        public Integer getId() {
-                return id;
+        public Integer getIdRole() {
+                return idRole;
         }
 
-        public void setId(Integer id) {
-                this.id = id;
+        public void setIdRole(Integer idRole) {
+                this.idRole = idRole;
         }
 
-        public String getName() {
+        public ERole getName() {
                 return name;
         }
 
-        public void setName(String name) {
+        public void setName(ERole name) {
                 this.name = name;
         }
-
-        public Role(String name) {
-            this.name = name;
-        }
-
-    }
+}
