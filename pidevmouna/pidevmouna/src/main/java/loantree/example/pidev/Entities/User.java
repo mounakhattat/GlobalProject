@@ -28,6 +28,10 @@ public class User implements Serializable {
     private String Housing;
     private Integer PostalCode;
     private String Email;
+
+    private Float Salary;
+
+    private Integer KidsNumber;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -38,9 +42,9 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Reclamation> reclamations;
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Credit> credits;
-    @ManyToMany(cascade = CascadeType.ALL)
     private Set<Events> events;
+    @OneToOne(mappedBy="user")
+    private Credit credit;
 
     public User() {
 
