@@ -18,7 +18,7 @@ public interface RefundService {
     List<Refund> getALLRefund();
 
 
-    double getMonthly_Payment(Refund r);
+
 
 
 }

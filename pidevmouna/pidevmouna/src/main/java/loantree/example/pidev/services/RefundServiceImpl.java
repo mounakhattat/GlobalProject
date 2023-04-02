@@ -44,13 +44,10 @@ public class RefundServiceImpl implements RefundService {
     }
 
 
-    @Override
-    public double getMonthly_Payment(Refund r) {
-        List<Refund> refunds=RepRefund.findAll();
-        double g=0;
-        Credit l =r.getCredit();
-        g= (l.getAmount()*(l.getInterest_rate()/12)) / (1 - Math.pow(1+ (l.getInterest_rate()/12),(-l.getDuration())));
-        return g;
 
-    }
+
+
+
+
+
 }
