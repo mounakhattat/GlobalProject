@@ -1,5 +1,6 @@
 package loantree.example.pidev.Entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Setter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table( name = "Account")
 public class Account implements Serializable {
     @Id
@@ -20,11 +22,16 @@ public class Account implements Serializable {
     @Column(name="idAccount")
 
     private Integer idAcc;
-    private Integer NumAccount;
-    private Date DateCreation;
-    private Integer Rib;
-    private Integer AmountTrans;
-    @ManyToOne
+    private Integer numAccount;
+    private Date dateCreation;
+    private Integer rib;
+    private Integer amountTrans;
+
+    private Boolean banned;
+
+    private Date bannedPeriode;
+    private Integer Ageuser;
+    @ManyToOne( cascade = CascadeType.ALL)
     User user;
 
     public Integer getIdAcc() {
@@ -36,36 +43,37 @@ public class Account implements Serializable {
     }
 
     public Integer getNumAccount() {
-        return NumAccount;
+        return numAccount;
     }
 
     public void setNumAccount(Integer numAccount) {
-        NumAccount = numAccount;
+        numAccount = numAccount;
     }
 
     public Date getDateCreation() {
-        return DateCreation;
+        return dateCreation;
     }
 
     public void setDateCreation(Date dateCreation) {
-        DateCreation = dateCreation;
+        dateCreation = dateCreation;
     }
 
     public Integer getRib() {
-        return Rib;
+        return rib;
     }
 
     public void setRib(Integer rib) {
-        Rib = rib;
+        rib = rib;
     }
 
     public Integer getAmountTrans() {
-        return AmountTrans;
+        return amountTrans;
     }
 
     public void setAmountTrans(Integer amountTrans) {
-        AmountTrans = amountTrans;
+        amountTrans = amountTrans;
 
     }
+
 }
 
