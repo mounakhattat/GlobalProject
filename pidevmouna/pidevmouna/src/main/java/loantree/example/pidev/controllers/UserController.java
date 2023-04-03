@@ -68,6 +68,7 @@ public class UserController {
     public User getUserById(@PathVariable("user-id") Integer IdUser) {
         return userService.getUserById(IdUser);
     }
+
     @Value("${app.twillio.toPhoneNo}")
     private String To;
     @Value("${app.twillio.fromPhoneNo}")
@@ -75,7 +76,7 @@ public class UserController {
 
     //http://localhost:8080/user/create-user
     @PostMapping("/createUser")
-    public ResponseEntity<?> createUser(@RequestBody User user ,  HttpSession session)throws MessagingException {
+    public ResponseEntity<?> createUser(@RequestBody User user, HttpSession session) throws MessagingException {
         String msg = "Bonjour, Loantree vous remercie pour votre fédilité..  ..";
         twilioService.sendSms(To, From, msg);
         String confirmationCode = UUID.randomUUID().toString();
@@ -95,11 +96,12 @@ public class UserController {
         return ResponseEntity.ok(new MessageResponse("Merci de verifier votre code"));
 
     }
+
     @PostMapping("/confirmEmail/{code}")
     public String confirmEmail(@PathVariable String code, HttpSession session, Model model) {
         String expectedCode = (String) session.getAttribute("expectedCode");
         System.out.println(expectedCode);
-        if (comfirmationEmailService.verifyCodeEmail(code, expectedCode) ){
+        if (comfirmationEmailService.verifyCodeEmail(code, expectedCode)) {
             User user = (User) session.getAttribute("user");
             user.setActived(true);
             userRepository.save(user);
@@ -131,6 +133,7 @@ public class UserController {
     }*/
 
     }
+
     //http://localhost:8080/user/update/{user-id}
     @PutMapping("/update/{user-id}")
     public User updateUser(@PathVariable("user-id") Integer UserId, @RequestBody User user) {
@@ -178,6 +181,7 @@ public class UserController {
                 .body(new InputStreamResource(bis));
 
     }
+
     @GetMapping("/export/excel")
     public void exportToExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
@@ -194,6 +198,7 @@ public class UserController {
 
         excelExporter.export(response);
     }
+
     private static final String QR_CODE_IMAGE_PATH = "C:\\Users\\Mouna\\Desktop\\Finaaal\\pidevmouna\\pidevmouna\\pidevmouna\\src\\main\\resources\\qrCode\\.png";
 
     @GetMapping("/viewqr/{id}")
@@ -201,7 +206,7 @@ public class UserController {
     public void viewQRCode(@PathVariable("id") int id, HttpServletResponse response) {
         try {
             User user = userService.getUserById(id);
-            String codeText = user.getIdUser() + "-" + user.getUsername() + "-" + user.getEmail() + "-" + user.getFirstName() + "-" + user.getLastName() + "-" + user.getNumPhone() ;
+            String codeText = user.getIdUser() + "-" + user.getUsername() + "-" + user.getEmail() + "-" + user.getFirstName() + "-" + user.getLastName() + "-" + user.getNumPhone();
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
             Map<EncodeHintType, Object> hints = new HashMap<>();
             hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -214,23 +219,16 @@ public class UserController {
             e.printStackTrace();
         }
     }
+
+    @GetMapping("/calculateUserScore/{IdUser}")
+    public Integer calculateUserScore(@PathVariable("IdUser") Integer idUser) {
+        return userService.calculateUserScore(idUser);
+    }
+
 }
 
 
 
-
-
-   /* @GetMapping("/export/pdf")
-    public void exportToPDF(HttpServletResponse response , @RequestBody User c) throws DocumentException, IOException {
-        response.setContentType("application/pdf");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-        String currentDateTime = dateFormatter.format(new Date());
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=BankingIdentity_" + currentDateTime + ".pdf";
-        response.setHeader(headerKey, headerValue);
-        //Account acc= AccSercice.retrieveAccount(c.getRib());
-
-    } */
 
 
 
