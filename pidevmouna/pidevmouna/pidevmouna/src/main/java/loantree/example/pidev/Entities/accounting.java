@@ -1,7 +1,6 @@
 package loantree.example.pidev.Entities;
 
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -24,8 +23,8 @@ public class accounting implements Serializable {
     private String totale;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    charge charge;
+    Charge charge;
     @ManyToOne(cascade = CascadeType.ALL)
-    revenues revenues;
+    Revenues revenues;
 
 }

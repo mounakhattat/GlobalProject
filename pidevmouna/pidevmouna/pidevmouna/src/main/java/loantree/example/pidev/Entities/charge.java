@@ -1,8 +1,6 @@
 package loantree.example.pidev.Entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "charge")
@@ -25,9 +23,5 @@ public class charge implements Serializable {
         this.id = id;
     }
     @OneToMany(cascade = CascadeType.ALL, mappedBy="charge")
-    private Set<accounting>  accountings;
-
-    public charge() {
-
-    }
+    private Set<Accounting> accountings;
 }

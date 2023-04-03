@@ -1,23 +1,30 @@
 package loantree.example.pidev.Entities;
 
+
+
 import lombok.*;
-import javax.persistence.*;
+import lombok.experimental.FieldDefaults;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 import java.sql.Time;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
+@FieldDefaults(level = AccessLevel.PRIVATE)
 
 public class Events implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id_Event;
+    private int Id_Event;
 
     private String name;
     private Date date;
@@ -28,19 +35,10 @@ public class Events implements Serializable {
     private String image;
     private String organizer;
     private Double ticketPrice;
-    private String ticketAvailability;
-    private String speakers;
-    private String sponsors;
+    private int ticketAvailability;
     private String contactInformation;
-    private String socialMediaLinks;
-    private String tags;
-    private String registrationInformation;
-    private String agenda;
+    private String FormLink;
 
-    @ManyToMany(mappedBy = "events")
-    private List<User> users;
 
-    public Events() {
 
-    }
 }
