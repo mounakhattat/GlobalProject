@@ -45,6 +45,17 @@ public class QrCodeResource {
     }
 
 
+    @GetMapping("/decode")
+    public ResponseEntity<String> decodeQrCode(@RequestParam("image") MultipartFile file) {
+        try {
+            String result = qrCodeService.decodeQr(file.getBytes());
+            return ResponseEntity.ok(result);
+        } catch (IOException | NotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to decode QR code.");
+        }
+    }
+
 }
 
 

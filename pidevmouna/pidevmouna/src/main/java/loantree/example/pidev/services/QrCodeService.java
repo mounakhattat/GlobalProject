@@ -39,6 +39,11 @@ public class QrCodeService {
         MatrixToImageWriter.writeToStream(bitMatrix, "jpeg", outputStream );
     }
 
-
+    public String decodeQr(byte[] data) throws IOException, NotFoundException {
+        Result result = new MultiFormatReader()
+                .decode(new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(
+                        ImageIO.read(new ByteArrayInputStream(data))))));
+        return result != null ? result.getText() : null;
+    }
 
 }
