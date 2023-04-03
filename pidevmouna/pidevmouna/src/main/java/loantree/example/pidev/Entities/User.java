@@ -54,7 +54,7 @@ public class User implements Serializable {
     private Set<Account> Account;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Reclamation> reclamations;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Credit> credits;
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Events> events;
