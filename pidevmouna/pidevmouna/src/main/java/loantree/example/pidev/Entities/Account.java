@@ -1,5 +1,6 @@
 package loantree.example.pidev.Entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Setter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table( name = "Account")
 public class Account implements Serializable {
     @Id
