@@ -1,30 +1,31 @@
 package loantree.example.pidev.Entities;
 
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table( name = "Refund")
+@Table(name = "Refund")
 public class Refund implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idRefund")
-    private Integer idRefund; // Clé primaire
-    private float interest;
-    private Double Monthly_Payment;
-    private float Amortization;
-    @Temporal(TemporalType.DATE)
-    private Date Due_Date;
-    @Temporal(TemporalType.DATE)
-    private Date date_ref;
-    private boolean status_ref;
-    private float Remaining_Balence;
-    private float penality;
+    private Integer idRefund;
 
+
+    private LocalDate due_Date;
+    private Double monthly_Payment;
+    private Float interest;
+    private Float amortization;
+    private Float remaining_Balence;
 
     @ManyToOne
-    Credit credit;
-
+    private Credit credit;
 }

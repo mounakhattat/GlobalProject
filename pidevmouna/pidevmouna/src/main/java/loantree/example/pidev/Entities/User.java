@@ -41,6 +41,9 @@ public class User implements Serializable {
     private String numPhone;
     private String password;
     private Date dateCreation;
+    private Float Salary;
+
+    private Integer KidsNumber;
 
 
 
@@ -50,16 +53,18 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Account> Account;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
+    @OneToMany( mappedBy = "user" ,cascade = CascadeType.ALL)
     private Set<Reclamation> reclamations;
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Credit> credits;
+    @OneToOne(mappedBy="user")
+    private Credit credit;
+
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Events> events;
-    @OneToOne(mappedBy = "UserPass")
+    @OneToOne
     private PasswordResetToken passwordResetToken;
+
     public String getUsername() {
         return username;
     }
@@ -77,7 +82,7 @@ public class User implements Serializable {
 
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
-                ", Account=" + Account +
+                ", Account=" + account +
                 ", roles=" + roles +
                 '}';
     }

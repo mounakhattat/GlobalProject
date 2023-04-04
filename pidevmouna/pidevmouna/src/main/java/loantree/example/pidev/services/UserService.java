@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class UserService implements IUserService {
-        private static final String SUBJECT = "Bienvenue chez Loan tree ";
+    private static final String SUBJECT = "Bienvenue chez Loan tree ";
     private static final String TEXT = "To confirm your register click here: ";
     @Autowired
     private UserRepository userRepository;
@@ -49,8 +49,8 @@ public class UserService implements IUserService {
 
         user.setActived(false);
 
-         return userRepository.save(user);
-        }
+        return userRepository.save(user);
+    }
     /*@Override
     public boolean activateAccount(String confirmationCode) {
         User user = userRepository.findByEmail(confirmationCode);
@@ -64,7 +64,7 @@ public class UserService implements IUserService {
 
 /*  String confirmUrl = "http://localhost:8080/user/createUser" ;
         sendSimpleMessage(user.getEmail(), SUBJECT, TEXT+confirmUrl); */
-       // return savedUser;
+    // return savedUser;
     //}
     /*    // Generate QR code for the user
         String qrCodeText = "User Id: " + savedUser.getIdUser() + ", Name: " + savedUser.getUsername();
@@ -76,8 +76,6 @@ public class UserService implements IUserService {
 
         savedUser.setQrcode(qrCodeBase64);
         userRepository.save(savedUser); */
-
-
 
 
     @Override
@@ -106,13 +104,12 @@ public class UserService implements IUserService {
     }
 
 
-
     @Override
-    public User saveUser(String username, String password, String confirmedPassword,String role) {
-        User  user=userRepository.findByUsername(username).get();
-        if(user!=null) throw new RuntimeException("User already exists");
-        if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
-        User User=new User();
+    public User saveUser(String username, String password, String confirmedPassword, String role) {
+        User user = userRepository.findByUsername(username).get();
+        if (user != null) throw new RuntimeException("User already exists");
+        if (!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
+        User User = new User();
         User.setUsername(username);
 
         User.setPassword(passwordEncoder.encode(password));
@@ -121,9 +118,10 @@ public class UserService implements IUserService {
 
         return User;
     }
+
     @Override
     public User UpdatePassword(User agent, String password) {
-        PasswordEncoder encoder=new BCryptPasswordEncoder();
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
         agent.setPassword(encoder.encode(password));
         userRepository.save(agent);
         return agent;
@@ -137,104 +135,48 @@ public class UserService implements IUserService {
         message.setSubject(subject);
         message.setText(text);
         emailSender.send(message);
-    } }
-
-  //  @Override
-  //  public User findByConfirmationCode(String code) {
-   //     return userRepository.findByConfirmationCode(code);
-   // }
-  /*@Override
-  public Integer scoreCredit(Integer id) {
-      Integer score = 0;
-      User user = userRepository.findById(user.getIdUser().orElse(null));
-      //System.out.println(user.getEmail());
-
-      Integer ancienneteEmploi = user.getDateCreation();
-      Float montantPret = credit.getAmount();
-      Integer dureePret = credit.getDue_date();
-      Integer ratioEndettement = credit.getInterest_rate();
-      Date date_now = new Date();
-      SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-      String yearString = yearFormat.format(date_now);
-      Integer year1 = Integer.parseInt(yearString);
-      //System.out.println(year1);
-
-      SimpleDateFormat yearFormat2 = new SimpleDateFormat("yyyy");
-      String yearString2 = yearFormat.format(user.getBirthDate());
-      Integer year2 = Integer.parseInt(yearString2);
-      Integer age = year1 - year2;
-      //System.out.println(age);
-      //Boolean garanties =loan.isGaranties();
-      // Boolean historiqueCredit = user.isHistoriqueCredit();
-      //  System.out.println(garanties);
-      // System.out.println(historiqueCredit);
-      //System.out.println("TEST");
-
-
-      //Critère 1: Revenu mensuel
-      if (revenuMensuel >= 3000 && revenuMensuel <= 5000) {
-          score += 20;
-          //System.out.println(score);
-      } else if (revenuMensuel > 5000) {
-          score += 40;
-      }
-
-      //Critère 2: Ancienneté de l'emploi
-      if (da >= 2 && ancienneteEmploi <= 5) {
-          score += 10;
-      } else if (ancienneteEmploi > 5) {
-          score += 20;
-      }
-      //System.out.println(score);
-
-      //Critère 3: Montant et durée du prêt
-      if (montantPret >= 5000 && montantPret <= 10000 && dureePret <= 24) {
-          score += 10;
-      } else if (montantPret > 10000 && dureePret > 24) {
-          score += 20;
-      }
-      //System.out.println(score);
-
-      //Critère 4: Ratio d'endettement
-      if (ratioEndettement < 0.3) {
-          score += 20;
-      } else if (ratioEndettement >= 0.3 && ratioEndettement <= 0.4) {
-          score += 10;
-      }
-      //System.out.println(score);
-
-
-      //Critère 6: Age
-      if (age >= 25 && age <= 40) {
-          score += 10;
-      } else if (age > 40 && age <= 50) {
-          score += 5;
-      }
-      //System.out.println(score);
-
-      //Critère 7: Garanties
-      //  if (loan.isGaranties()) {
-      //score += 10;
-      //}
-      //  System.out.println(score);
-
-      ////Critère 8: Historique de crédit
-      //  if (user.isHistoriqueCredit()) {
-      //score += 10;
-      //}
-      System.out.println(score);
-
-      return score;
-  }
     }
 
 
+    public int calculateUserScore(Integer idUser) {
+        int score = 0;
+        User user = userRepository.findById(idUser).orElse(null);
 
-  /* @Override
-    public void addRoleToUser(String username, String name) {
-        User User=userRepository.findByUsername(username);
-        Role Role= roleRepository.findByRoleName(name);
-        User.getRoles().add(Role);
-        userRepository.save(User);
-    }*/
+        // Check user gender
+        if (user.getSex().equalsIgnoreCase("homme")) {
+            score += 10;
+        } else if (user.getSex().equalsIgnoreCase("femme")) {
+            score += 20;
+        }
 
+        // Check user location
+        if (user.getPlaceBirth().equalsIgnoreCase("New York")) {
+            score += 30;
+        } else if (user.getPlaceBirth().equalsIgnoreCase("Los Angeles")) {
+            score += 20;
+        } else if (user.getPlaceBirth().equalsIgnoreCase("Chicago")) {
+            score += 10;
+        }
+        // check user age
+        if (user.getAge() > 40) {
+            score += 30;
+        } else if (user.getAge()> 30) {
+            score += 20;
+        } else if (user.getAge() > 20) {
+            score += 10;
+        }
+
+        // Check user address
+        if (user.getHousing().toLowerCase().contains("Lac")) {
+            score += 10;
+        } else if (user.getHousing().toLowerCase().contains("Ibn sina")) {
+            score += 20;
+        } else if (user.getHousing().toLowerCase().contains("Nacer")) {
+            score += 30;
+        }
+
+
+
+        return score;
+    }
+}

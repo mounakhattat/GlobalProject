@@ -1,5 +1,5 @@
 package loantree.example.pidev.Entities;
 
 public enum StateReclamation {
-    OPEN,CLOSED
+    Open,Resolved,InProgress,Closed
 }

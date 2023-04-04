@@ -1,17 +1,20 @@
 package loantree.example.pidev.Entities;
+
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.List;
-
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-
+@ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Reclamation implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -23,12 +26,9 @@ public class Reclamation implements Serializable {
     TypeReclamation type;
     Instant dateReclamation;
     @Enumerated(EnumType.STRING)
-    StateReclamation state;
+ StateReclamation state;
+    @ManyToOne
+    User user;
     @OneToOne
-    private Chat chat;
-
-
-    public Reclamation() {
-
-    }
+    Chat chat;
 }

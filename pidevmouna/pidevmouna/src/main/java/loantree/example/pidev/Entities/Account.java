@@ -31,7 +31,8 @@ public class Account implements Serializable {
 
     private Date bannedPeriode;
     private Integer Ageuser;
-    @ManyToOne( cascade = CascadeType.ALL)
+    private Integer balance;
+    @OneToOne(mappedBy ="account", cascade = CascadeType.ALL)
     User user;
 
     public Integer getIdAcc() {

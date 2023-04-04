@@ -1,33 +1,71 @@
 package loantree.example.pidev.Entities;
 
+import lombok.AllArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
-
+@AllArgsConstructor
 @Entity
-@Table(name = "charge")
-public class charge implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Table( name = "charge")
+public class Charge implements Serializable {  // convertir la forme l'objet en  byte pour la protection du data //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_charge")
-    private Long id; // Identifiant  (Clé primaire)
+    @Column(name="idCharge")
+    private Integer idCharge; // Clé primaire
+    private Long sommeCharge;
+    private String TypeCharge;
 
-    @Column(name = "type_charge")
-    private String type_charge;
+    @ManyToOne()
+    @JoinColumn(name = "accounting_id")
+    private Accounting accounting;
+  public Charge (){}
 
-    @Column(name = "somme_charge")
-    private String somme_charge;
-
-    public charge(Long id) {
-        this.id = id;
+    public void setIdCharge(Integer idCharge) {
+        this.idCharge = idCharge;
     }
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="charge")
-    private Set<accounting>  accountings;
 
-    public charge() {
-
+    public Integer getIdCharge() {
+        return idCharge;
     }
+
+    public Long getSommeCharge() {
+        return sommeCharge;
+    }
+
+    public Accounting getAccounting() {
+        return accounting;
+    }
+    @Column(name = "amount")
+    private Double amount;
+    public String getTypeCharge() {
+        return TypeCharge;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setTypeCharge(String typeCharge) {
+        TypeCharge = typeCharge;
+    }
+
+    public void setAccounting(Accounting accounting) {
+        this.accounting = accounting;
+    }
+
+    public void setSommeCharge(Long sommeCharge) {
+        this.sommeCharge = sommeCharge;
+    }
+
+
+
+
+
+    // Constructeur et accesseurs (getters) et mutateurs (setters)
+
+
+
+
 }
+
+

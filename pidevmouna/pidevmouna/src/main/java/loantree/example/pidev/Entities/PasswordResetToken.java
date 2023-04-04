@@ -16,7 +16,7 @@ public class PasswordResetToken implements Serializable {
     @Column(name="expireDate")
     private Instant expireDate;
 
-    @OneToOne
+    @OneToOne(mappedBy = "passwordResetToken")
     private User UserPass;
 
 
