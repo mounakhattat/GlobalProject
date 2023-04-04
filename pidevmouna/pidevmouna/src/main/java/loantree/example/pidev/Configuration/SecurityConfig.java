@@ -86,6 +86,24 @@ public class SecurityConfig { // extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/user/**").permitAll()
                 .antMatchers("/Account/**").permitAll()
+<<<<<<< HEAD
+=======
+                .antMatchers("/accounting/**").permitAll()
+                .antMatchers("/revenue/**").permitAll()
+                .antMatchers("/charge/**").permitAll()
+                .antMatchers("/Transaction/**").permitAll()
+                .antMatchers("/credit/**").permitAll()
+                .antMatchers("/Home/**").permitAll()
+                .antMatchers("/Chat/**").permitAll()
+                .antMatchers("/Event/**").permitAll()
+                .antMatchers("/EmailRayen/**").permitAll()
+                .antMatchers("/Reclamation/**").permitAll()
+
+
+
+
+
+>>>>>>> 5cef2ce9968aaedb64b85496dedc62258d102de0
                 .anyRequest().authenticated();
         http.authenticationProvider(authenticationProvider());
 

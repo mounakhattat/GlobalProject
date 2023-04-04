@@ -23,6 +23,16 @@ public class Account implements Serializable {
 
     private Integer idAcc;
 
+<<<<<<< HEAD
+=======
+    private Boolean banned;
+
+    private Date bannedPeriode;
+    private Integer Ageuser;
+    private Integer balance;
+    @OneToOne(mappedBy ="account", cascade = CascadeType.ALL)
+    User user;
+>>>>>>> 5cef2ce9968aaedb64b85496dedc62258d102de0
 
     public Integer getIdAcc() {
         return idAcc;

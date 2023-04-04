@@ -1,10 +1,17 @@
 package loantree.example.pidev.Entities;
 
 
+<<<<<<< HEAD
 import javax.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+=======
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+import javax.persistence.*;
+>>>>>>> 5cef2ce9968aaedb64b85496dedc62258d102de0
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -27,5 +34,13 @@ public class Reclamation implements Serializable {
     Instant dateReclamation;
 
     @Enumerated(EnumType.STRING)
+<<<<<<< HEAD
     loantree.example.pidev.Entities.Enums.StateReclamation stateReclamation;
+=======
+ StateReclamation state;
+    @ManyToOne
+    User user;
+    @OneToOne
+    Chat chat;
+>>>>>>> 5cef2ce9968aaedb64b85496dedc62258d102de0
 }

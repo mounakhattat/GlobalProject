@@ -1,6 +1,7 @@
 package loantree.example.pidev.Entities;
 
 
+<<<<<<< HEAD
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -12,6 +13,16 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 import java.sql.Time;
+=======
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.sql.Time;
+import java.util.Set;
+>>>>>>> 5cef2ce9968aaedb64b85496dedc62258d102de0
 
 @Entity
 @Getter
@@ -38,7 +49,14 @@ public class Events implements Serializable {
     private int ticketAvailability;
     private String contactInformation;
     private String FormLink;
+<<<<<<< HEAD
 
 
 
+=======
+    @ManyToMany(mappedBy="events", cascade = CascadeType.ALL)
+    private Set<User> user;
+
+
+>>>>>>> 5cef2ce9968aaedb64b85496dedc62258d102de0
 }
