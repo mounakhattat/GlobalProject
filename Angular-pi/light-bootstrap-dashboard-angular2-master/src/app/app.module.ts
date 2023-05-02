@@ -1,6 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -12,43 +11,49 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { CreateReclamationComponent } from './create-reclamation/create-reclamation.component';
-import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
-import { UpdateReclamationComponent } from './update-reclamation/update-reclamation.component';
-import { CreateEventComponent } from './create-event/create-event.component';
-import { ListEventComponent } from './list-event/list-event.component';
-import { UpdateEventComponent } from './update-event/update-event.component';
-import { Ng2SearchPipe } from 'ng2-search-filter';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { ChatComponent } from './chat/chat.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersService } from './service/UserService';
+import { ProfileComponent } from './profile/profile.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ResetPasswordTokenComponent } from './reset-password-token/reset-password-token.component';
+import { ConfirmationSMSComponent } from './confirmation-sms/confirmation-sms.component';
+
+
+
 
 @NgModule({
   imports: [
-    NgxPaginationModule,
     BrowserAnimationsModule,
+    FormsModule,
     RouterModule,
     HttpClientModule,
     NavbarModule,
     FooterModule,
     SidebarModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule
+    MatButtonModule,
+    MatFormFieldModule
+   
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    CreateReclamationComponent,
-    ListReclamationComponent,
-    UpdateReclamationComponent,
-    CreateEventComponent,
-    ListEventComponent,
-    UpdateEventComponent,
-    ChatComponent,
+    LoginComponent,
+    SignupComponent,
+    ProfileComponent,
+    ResetPasswordComponent,
+    ResetPasswordTokenComponent,
+    ConfirmationSMSComponent
+
   ],
-  providers: [],
+  providers: [UsersService],
+
   bootstrap: [AppComponent]
-})
+}
+)
 export class AppModule { }
