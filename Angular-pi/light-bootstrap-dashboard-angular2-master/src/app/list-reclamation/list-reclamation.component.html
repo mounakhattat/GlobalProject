@@ -1,0 +1,220 @@
+<div class="row mb-3 align-items-center">
+    <div class="col-md-2">
+      <h4><strong>Filter By State</strong></h4>
+    </div>
+    <div class="col-md-4">
+      <select style="margin-top: 20px;" class="form-control" [(ngModel)]="selectedState">
+        <option value="">All States</option>
+        <option value="Open">Open</option>
+        <option value="InProgress">In Progress</option>
+        <option value="Resolved">Resolved</option>
+        <option value="Closed">Closed</option>
+      </select>
+    </div>
+    <div class="col-md-6 text-right">
+        <button class="btn btn-primary" style="margin-top: 20px;" (click)="navigateTocreateReclamation()">Create Reclamation</button>
+      </div>
+  </div>
+  
+<div class="row">
+    <div class="col-md-3" *ngFor="let r of filterReclamations() | paginate: { itemsPerPage: 12, currentPage: currentPage }">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title"><strong>Title:</strong>{{r.title}}</h5>
+          <p class="card-text"><strong>Date:</strong>{{r.dateReclamation}}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><strong>Type:</strong> {{r.type}}</p>
+          <p class="card-text"><strong>State:</strong> <span [ngStyle]="{color: r.state === 'Open' ? 'red' : r.state === 'InProgress' ? 'blue' : r.state === 'Resolved' ? 'green' : 'orange'}">{{r.state}}</span></p>
+        </div>
+        <div class="card-footer">
+            <div class="reclamation-buttons text-center">
+                <button class="btn-icon btn-pill btn btn-warning" (click)="navigateToUpdateReclamation(r)"><i class="fa fa-edit"></i></button>
+                <button class="btn-icon btn-pill btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash"></i></button> 
+              </div>
+            <div class="modal fade mt-4" data-backdrop="false" tabindex="-1" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete Item</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p class="mb-0">Are you sure you want to delete this item?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="deleteReclamation(r.idReclamation)">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </div>
+  
+<style>
+    .reclamation-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .reclamation {
+  width: 100%;
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid blue;
+  border-radius: 10px;
+}
+
+    .reclamation h6 {
+        margin-top: 0;
+    }
+    .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+    .reclamation-details {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 7px;
+        margin-bottom: 10px;
+    }
+    .filter-select {
+  width: 200px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+   .reclamation-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.reclamation-buttons button {
+  margin: 0 5px;
+}
+
+    .reclamation-buttons button {
+        margin-left: 5px;
+    }
+
+    .reclamation-state {
+        font-weight: bold;
+    }
+    .card-header {
+  text-align: center;
+}
+.card-body {
+  text-align: center;
+}
+.card-footer{
+  text-align: center;
+}
+.card {
+  border: 2px solid blue;
+  border-radius: 10px;
+  width: 100%;
+    margin: 5px;
+  padding: 8px;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+.container {
+  padding-left: 20px;
+}
+.reclamation:first-child {
+  margin-top: 20px;
+}
+.row {
+  margin-bottom: 20px;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper:after {
+  content: '\f078';
+  font-family: FontAwesome;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.form-control {
+  padding: 10px 35px 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #6c757d;
+}
+
+.button-64 {
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.button-64:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+
+
+</style>
