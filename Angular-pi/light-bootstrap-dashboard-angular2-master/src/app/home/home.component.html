@@ -1,186 +1,86 @@
-<div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <lbd-chart
-                  [title]="'Email Statistics'"
-                  [subtitle]="'Last Campaign Performance'"
-                  [chartClass]="'ct-perfect-fourth'"
-                  [chartType]="emailChartType"
-                  [chartData]="emailChartData"
-                  [legendItems]="emailChartLegendItems"
-                  [withHr]="true"
-                  [footerIconClass]="'fa fa-clock-o'"
-                  [footerText]="'Campaign sent 2 days ago'">
-                </lbd-chart>
-            </div>
-            <div class="col-md-8">
-                <lbd-chart
-                  [title]="'Users Behavior'"
-                  [subtitle]="'24 Hours performance'"
-                  [chartType]="hoursChartType"
-                  [chartData]="hoursChartData"
-                  [chartOptions]="hoursChartOptions"
-                  [chartResponsive]="hoursChartResponsive"
-                  [legendItems]="hoursChartLegendItems"
-                  [withHr]="true"
-                  [footerIconClass]="'fa fa-history'"
-                  [footerText]="'Updated 3 minutes ago'">
-                </lbd-chart>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <lbd-chart
-                  [title]="'2021 Sales'"
-                  [subtitle]="'All products including Taxes'"
-                  [chartType]="activityChartType"
-                  [chartData]="activityChartData"
-                  [chartOptions]="activityChartOptions"
-                  [chartResponsive]="activityChartResponsive"
-                  [legendItems]="activityChartLegendItems"
-                  [withHr]="true"
-                  [footerIconClass]="'fa fa-check'"
-                  [footerText]="'Data information certified'">
-                </lbd-chart>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Tasks</h4>
-                        <p class="category">Backend development</p>
-                    </div>
-                    <div class="content">
-                        <div class="table-full-width">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <input id="checkbox1" type="checkbox">
-                                                <label for="checkbox1">
-
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <input id="checkbox2" type="checkbox" checked>
-                                                <label for="checkbox2">
-
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <input id="checkbox3" type="checkbox" checked>
-                                                <label for="checkbox3">
-
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                        </td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <input id="checkbox4" type="checkbox">
-                                                <label for="checkbox4">
-
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <input id="checkbox5" type="checkbox" >
-                                                <label for="checkbox5">
-
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Read "Following makes Medium better"</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <input id="checkbox6" type="checkbox">
-                                                <label for="checkbox6">
-
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Unfollow 5 enemies from twitter</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="footer">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-history"></i> Updated 3 minutes ago
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>LoanTree</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          float: right;
+        }
+        li {
+          float: left;
+          margin-left: 10px;
+        }
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        li a:hover {
+          background-color: #111;
+        }
+      </style>
+  </head>
+  <body >
+    <header>
+      <nav>
+        <ul class="nav-right">
+          <li><a href="#">Accueil</a></li>
+          <li> <a routerLink="/login"> LogIn</a>
+          </li>
+          <li>          <a routerLink="/signup"> Sign UP</a>
+          </li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="logo">
+      <p>Loan Tree</p>
+      <img src="/assets/img/logo.png" alt="">
     </div>
-</div>
+    <div>
+      <p>"Welcome to the website of My Microfinance Bank. We are pleased to welcome you."</p>
+    </div>
+    </header>
+    <main>
+      <section class="cta" style="min-height: 100vh; background-size: cover; background-image: url('https://thumbs.dreamstime.com/z/money-growth-saving-upper-tree-coins-to-shown-concept-growing-business-132121725.jpg');" >
+
+      </section>
+      <section class="features">
+        <div class="feature">
+          <h1>SDGs</h1>
+          <p>Microfinance institutions (MFIs) play a critical role in advancing the Sustainable Development Goals (SDGs) by providing access to financial services to low-income and underserved populations. By enabling people to save, borrow, and invest, MFIs contribute to poverty reduction, economic growth, and financial inclusion, which are key drivers of many of the SDGs.</p>
+          <img src="https://www.internationalegg.com/app/uploads/2023/01/UN-SDGs-Wheel-Graphic-1-828x502.png" alt="" height="200" width="190"style="width:80%" >
+    </div>
+        <div class="feature">
+          <h2>Perform banking operations online</h2>
+          <p>
+            Microfinance institutions have been at the forefront of adopting and implementing digital financial services, including online banking. By leveraging technology, microfinance institutions can provide their clients with convenient and secure access to a range of financial products and services, such as savings accounts, loans, and money transfers. Online banking allows microfinance clients to manage their accounts, access information and services.</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLqVu44pZcNCPS8WRst8KvhYvW7ndcumrJpQ&usqp=CAU.png" alt="" height="200" width="190"style="width:80%" >
+
+        </div>
+        <div class="feature">
+          <h1>Microfinance</h1>
+          <p>Microfinance helps to create jobs and generate income for people, especially those in rural areas or from marginalized communities. This, in turn, helps to promote economic growth and reduce poverty.Microfinance provides access to financial services to people who have limited or no access to traditional banking services, which can help to reduce poverty and promote economic development.</p>
+          <img src="https://www.togofirst.com/media/k2/items/cache/5ee4c505b6eebc63c100d449f7b255f4_L.jpg" alt="" height="200" width="190"style="width:80%" >
+
+        </div>
+
+      </section>
+      <footer class="footer" >
+        
+    
+        <p>Num phone: +21623755931 <i class='fas fa-phone-volume'></i></p>
+        
+
+      </footer>
+    </main>
+  </body>
+</html>
